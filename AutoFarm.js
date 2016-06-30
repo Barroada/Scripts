@@ -50,21 +50,27 @@ $('#plunder_list tr').each(function(){
  var id = [];
 var imgs = [];
  var i = 1;
-$(document).keydown(function(e) {
-    if (e.which == 9) {
-       setInterval(function(){
-       var aldeia = id[i].split("_");
+$(document).ready(function(){
+   if(sessionStorage.getItem("Attfarm") == 1){
+      setInterval(function(){
+         var aldeia = id[i].split("_");
          if(imgs[i] == "https://dsbr.innogamescdn.com/8.46.2/29208/graphic/max_loot/1.png"){
-          Accountmanager.farm.sendUnits(this, aldeia[1], 10582); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], 13911); 
          }else{
-           Accountmanager.farm.sendUnits(this, aldeia[1], 8730); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], 7144); 
          }
-       i = i+1;    
-      if(i>51){
-        return 0;
-      }
-       },500);
-    }
+         i = i+1;    
+         if(i>51){
+            sessionStorage.setItem("Attfarm",0);
+         }
+         },500);
+   }else{
+       sessionStorage.setItem("Attfarm",0);
+   }
+      setTimeout(function(){
+         sessionStorage.setItem("Attfarm",1);
+         location.reload();
+      },1800000);
 });
 
 $('#plunder_list tr').each(function(){
