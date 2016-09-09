@@ -5,51 +5,11 @@
 // @version     1
 // @grant       none
 // ==/UserScript== 
-   //  var list = document.getElementsByClassName("farm_"+id "farm_icon" ".farm_icon_b");
-    //  var id;
-    //  alert("bg" + list.length);
-    //  if(list == null){
-    //    alert("so bad");
-    //  }
-/* 
-    for (var i=1; i<id.length; i++){
-      // alert(id[i]);
-   // alert("farm_"+id[i] + ".farm_icon" + ".farm_icon_b");
-     var start = new Date().getTime();
-      // alert("f");
-     //document.getElementsByClassName("farm_"+ id[i]).trigger("click");
-       var aldeia = id[i].split("_");
-       Accountmanager.farm.sendUnits(this, aldeia[1], 10582); 
-      // alert("t");
-       
-    }
  
- Funcionando 
- var id = [];
-var imgs = [];
- var i = 1;
-$(document).keydown(function(e) {
-    if (e.which == 9) {
-       setInterval(function(){
-       var aldeia = id[i].split("_");
-       Accountmanager.farm.sendUnits(this, aldeia[1], 10582); 
-       i = i+1;    
-      if(i>51){
-        return 0;
-      }
-       },500);
-    }
-});
-
-$('#plunder_list tr').each(function(){
-  //alert(this.id);
-  id.push(this.id);
-  imgs = $(img).attr("src");
-});
-*/
 /*----- Lista de botões do AS----------
 BR77 - A=5112 B= 15784
-*/
+---------------------------------------*/
+
  var id = [];
  var imgs = [];
  var i = 1;
@@ -57,10 +17,11 @@ BR77 - A=5112 B= 15784
  var modB = 15784;
 $(document).ready(function(){
    if(sessionStorage.getItem("Attfarm") == 1){
+        af();
       setInterval(function(){
          af();
          i=1;
-      },60000);
+      },60000); // tempo em milissegundos
    }else{
        sessionStorage.setItem("Attfarm",1);
    }
@@ -72,11 +33,11 @@ function af(){
    setInterval(function(){
          var aldeia = id[i].split("_");
          if(imgs[i] == "https://dsbr.innogamescdn.com/8.46.2/29208/graphic/max_loot/1.png"){
-            Accountmanager.farm.sendUnits(this, aldeia[1], modB); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], modB);
          }else{
-            Accountmanager.farm.sendUnits(this, aldeia[1], modA); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], modA);
          }
-         i = i+1;    
+         i = i+1;
          if(i>id.length){
             return false;
          }
