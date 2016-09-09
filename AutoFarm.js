@@ -47,9 +47,14 @@ $('#plunder_list tr').each(function(){
   imgs = $(img).attr("src");
 });
 */
+/*----- Lista de botões do AS----------
+BR77 - A=5112 B= 15784
+*/
  var id = [];
-var imgs = [];
+ var imgs = [];
  var i = 1;
+ var modA = 15784;
+ var modB = 15784;
 $(document).ready(function(){
    if(sessionStorage.getItem("Attfarm") == 1){
       setInterval(function(){
@@ -67,9 +72,9 @@ function af(){
    setInterval(function(){
          var aldeia = id[i].split("_");
          if(imgs[i] == "https://dsbr.innogamescdn.com/8.46.2/29208/graphic/max_loot/1.png"){
-            Accountmanager.farm.sendUnits(this, aldeia[1], 13911); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], modB); 
          }else{
-            Accountmanager.farm.sendUnits(this, aldeia[1], 7144); 
+            Accountmanager.farm.sendUnits(this, aldeia[1], modA); 
          }
          i = i+1;    
          if(i>id.length){
