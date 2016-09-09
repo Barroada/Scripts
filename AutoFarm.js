@@ -73,7 +73,7 @@ function af(){
          }
          i = i+1;    
          if(i>id.length){
-            sessionStorage.setItem("Attfarm",0);
+            return false;
          }
          },1000);
 }
