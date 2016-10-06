@@ -1,37 +1,44 @@
 // ==UserScript==
-// @name        test
-// @namespace   test
-// @include     *
-// @version     1
-// @grant       none
-// ==/UserScript== 
- 
-/*----- Lista de botões do AS----------
-BR77 - A=5112 B= 15784
----------------------------------------*/
+// @name         Auto Farm
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        http://*/*
+// @grant        none
+// ==/UserScript==
+
 
  var id = [];
  var imgs = [];
  var i = 1;
- var modA = 15784;
- var modB = 15784;
+ var modA = 9260;
+ var modB = 9260;
+ var ataques = 600000; // tempo em milissegundos
+ var recarregar = 3600000; // tempo em milissegundos
 $(document).ready(function(){
    if(sessionStorage.getItem("Attfarm") == 1){
         af();
+         i=1;
       setInterval(function(){
          af();
          i=1;
-      },60000); // tempo em milissegundos
+      },ataques); // tempo em milissegundos
+
    }else{
        sessionStorage.setItem("Attfarm",1);
    }
       setTimeout(function(){
          location.reload();
-      },1800000); //Tempo pra atualizar a Página
+      },recarregar); //Tempo pra atualizar a Página
 });
 function af(){
-   setInterval(function(){
+   var inter1 = setInterval(function(){
+       try{
          var aldeia = id[i].split("_");
+       }catch(err){
+           clearInterval(inter1);
+       }
          if(imgs[i] == "https://dsbr.innogamescdn.com/8.46.2/29208/graphic/max_loot/1.png"){
             Accountmanager.farm.sendUnits(this, aldeia[1], modB);
          }else{
@@ -39,7 +46,7 @@ function af(){
          }
          i = i+1;
          if(i>id.length){
-            return false;
+           clearInterval(inter1);
          }
          },1000);
 }
