@@ -1,15 +1,13 @@
 // ==UserScript==
-// @name         farmday
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        http://*/*
+// @name         Farmday
+// @namespace    https://github.com/Barroada/Scripts/blob/master/farmday.js
+// @version      2.0
+// @description  Mostra um ranking do record de farm dos membros do Clã
+// @author       Barroada - https://github.com/Barroada/scripts
+// @match        https://*screen=ally&mode=members*
 // @grant        none
 // ==/UserScript==
 
-
-//https://br78.tribalwars.com.br/game.php?screen=ranking&mode=in_a_day&type=loot_res&name=setrume
 
 var original = [];
 var pordenar = [];
@@ -44,7 +42,6 @@ function sort(){
     pordenar.sort(function(a,b) {return b-a;});
     for(var i=0;i<pordenar.length;i++){
         for(var j=0;j<original.length;j++){
-            //alert("I=:"+pordenar[i] +"J=:"+original[j]);
             if(pordenar[i] == original[j]){
                 novatable = novatable +"<tr class='"+$(".tr"+j).attr('class')+"'>"+ $(".tr"+j).html()+"</tr>";
                 break;
@@ -94,30 +91,4 @@ $(document).on("click",'.farm',function(){
     return false;
 
 });
-/*
-$(".farm").click(function(){
-    if(bool === true){
-        outra();
-        tabelaoriginal = $('.membros').html();
-        sort();
-        bool = false;
-        alert(novatable);
-        $('.membros').html(novatable);
-    }else{
-        alert("1");
-        if(bool2 === true){
-            $('.membros').html(tabelaoriginal);
-            bool2 = false;
-        }else{
-            $('.membros').html(novatable);
-            bool2 = true;
-        }
-    }
-    return false;
-});
-*/
 $("#ally_content .vis").addClass("membros");
-
-
-
-
